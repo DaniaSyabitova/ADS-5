@@ -18,7 +18,7 @@ int pr(char op) {
 
 std::string infx2pstfx(std::string inf) {
   std::string res;
-  TStack <char, 100> sta1;
+  TStack <char, 100> sta;
   for (int i = 0; i < inf.length(); i++) {
     if (pr(inf[i]) == 5) {
       res.push_back(inf[i]); //цифры сразу в строку с пробелом
@@ -27,32 +27,32 @@ std::string infx2pstfx(std::string inf) {
         if (pr(inf[i]) == 4) {
           continue; //пропускаем пробел
         } else if (pr(inf[i]) == 0) {
-          sta1.push(inf[i]);
-        } else if (pr(inf[i]) > pr(sta1.get())) {
-          sta1.push(inf[i]);
-        } else if (sta1.isEmpty()) {
-          sta1.push(inf[i]);
+          sta.push(inf[i]);
+        } else if (pr(inf[i]) > pr(sta.get())) {
+          sta.push(inf[i]);
+        } else if (sta.isEmpty()) {
+          sta.push(inf[i]);
         } else if (pr(inf[i]) == 1) {
           while (pr(sta1.get()) != 0) { //до открытой скобки
-            res.push_back(sta1.get());
+            res.push_back(sta.get());
             res.push_back(' ');
-            sta1.pop(); //удаление скобки
+            sta.pop(); //удаление скобки
           }
-          sta1.pop();
+          sta.pop();
         } else {
-            while (!sta1.isEmpty() && (pr(inf[i]) <= pr(sta1.get()))) {
-              res.push_back(sta1.get());
+            while (!sta.isEmpty() && (pr(inf[i]) <= pr(sta.get()))) {
+              res.push_back(sta.get());
               res.push_back(' ');
-              sta1.pop();
+              sta.pop();
             }
-            sta1.push(inf[i]);
+            sta.push(inf[i]);
         }
      }
   }
-  while (!sta1.isEmpty()) { //извлечение остатка
-    res.push_back(sta1.get());
+  while (!sta.isEmpty()) { //извлечение остатка
+    res.push_back(sta.get());
     res.push_back(' ');
-    sta1.pop();
+    sta.pop();
   }
   res.pop_back();
   return res;
@@ -68,7 +68,7 @@ int culcul(char op, int x, int y) {
 }
 
 int eval(std::string pref) {
-  TStack <char, 100> stack2;
+  TStack <int, 100> stack2;
   int res = 0;
   int x, y;
   for (int i = 0; i < pref.length(); i++) {
