@@ -51,8 +51,8 @@ std::string infx2pstfx(std::string inf) {
           sta.pop();
         } else {
             while (!sta.isEmpty() && (pr(inf[i]) <= pr(sta.get()))) {
-              res.push_back(sta.get());
-              res.push_back(' ');
+              out.push_back(sta.get());
+              out.push_back(' ');
               sta.pop();
             }
             sta.push(inf[i]);
