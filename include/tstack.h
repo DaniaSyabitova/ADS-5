@@ -23,7 +23,6 @@ class TStack {
       throw "Full";
     }
   }
-  
   T get() const {
     if (!isEmpty()) {
       return arr[top];
