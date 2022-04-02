@@ -18,41 +18,41 @@ int priority(char op) {
 
 std::string infx2pstfx(std::string inf) {
   std::string res;
-  TStack <char, 100> stack1;
+  TStack <char, 100> sta1;
   for (int i = 0; i < inf.length(); i++) {
-    if (priority(inf[i] == 5)) {
+    if (priority(inf[i]) == 5) {
       res.push_back(inf[i]); //цифры сразу в строку с пробелом
       res.push_back(' ');
     } else {
-        if (priority(inf[i] == 4)) {
+        if (priority(inf[i]) == 4) {
           continue; //пропускаем пробел
-        } else if (priority(inf[i] == 0)) {
-          stack1.push(inf[i]);
-        } else if (priority(inf[i]) > priority(stack1.get())) {
-          stack1.push(inf[i]);
-        } else if (stack1.isEmpty()) {
-          stack1.push(inf[i]);
-        } else if (priority(inf[i] == 1) {
-          while (priority(stack1.get()) != 0) { //до открытой скобки
-            res.push_back(stack1.get());
+        } else if (priority(inf[i]) == 0) {
+          sta1.push(inf[i]);
+        } else if (priority(inf[i]) > priority(sta1.get())) {
+          sta1.push(inf[i]);
+        } else if (sta1.isEmpty()) {
+          sta1.push(inf[i]);
+        } else if (priority(inf[i]) == 1) {
+          while (priority(sta1.get()) != 0) { //до открытой скобки
+            res.push_back(sta1.get());
             res.push_back(' ');
-            stack1.pop(); //удаление скобки
+            sta1.pop(); //удаление скобки
           }
-          stack1.pop();
+          sta1.pop();
         } else {
-            while (!stack1.isEmpty() && (priority(inf[i]) <= priority(stack1.get()))) {
-              res.push_back(stack1.get());
+            while (!sta1.isEmpty() && (priority(inf[i]) <= priority(sta1.get()))) {
+              res.push_back(sta1.get());
               res.push_back(' ');
-              stack1.pop();
+              sta1.pop();
             }
-            stack1.push(inf[i]);
+            sta1.push(inf[i]);
         }
      }
   }
-  while (!stack1.isEmpty()) { //извлечение остатка
-    res.push_back(stack1.get());
+  while (!sta1.isEmpty()) { //извлечение остатка
+    res.push_back(sta1.get());
     res.push_back(' ');
-    stack1.pop();
+    sta1.pop();
   }
   res.pop_back();
   return res;
