@@ -3,7 +3,7 @@
 #include <map>
 #include "tstack.h"
 
-int priority(char op) {
+int pr(char op) {
     switch (op) {
       case '(': return 0;
       case ')': return 1;
@@ -20,27 +20,27 @@ std::string infx2pstfx(std::string inf) {
   std::string res;
   TStack <char, 100> sta1;
   for (int i = 0; i < inf.length(); i++) {
-    if (priority(inf[i]) == 5) {
+    if (pr(inf[i]) == 5) {
       res.push_back(inf[i]); //цифры сразу в строку с пробелом
       res.push_back(' ');
     } else {
-        if (priority(inf[i]) == 4) {
+        if (pr(inf[i]) == 4) {
           continue; //пропускаем пробел
-        } else if (priority(inf[i]) == 0) {
+        } else if (pr(inf[i]) == 0) {
           sta1.push(inf[i]);
-        } else if (priority(inf[i]) > priority(sta1.get())) {
+        } else if (pr(inf[i]) > pr(sta1.get())) {
           sta1.push(inf[i]);
         } else if (sta1.isEmpty()) {
           sta1.push(inf[i]);
-        } else if (priority(inf[i]) == 1) {
-          while (priority(sta1.get()) != 0) { //до открытой скобки
+        } else if (pr(inf[i]) == 1) {
+          while (pr(sta1.get()) != 0) { //до открытой скобки
             res.push_back(sta1.get());
             res.push_back(' ');
             sta1.pop(); //удаление скобки
           }
           sta1.pop();
         } else {
-            while (!sta1.isEmpty() && (priority(inf[i]) <= priority(sta1.get()))) {
+            while (!sta1.isEmpty() && (pr(inf[i]) <= pr(sta1.get()))) {
               res.push_back(sta1.get());
               res.push_back(' ');
               sta1.pop();
@@ -56,8 +56,7 @@ std::string infx2pstfx(std::string inf) {
   }
   res.pop_back();
   return res;
-}
-                 
+}                
 int culcul(char op, int x, int y) {
   switch (op) {
     case '+': return x + y;
@@ -73,9 +72,9 @@ int eval(std::string pref) {
   int res = 0;
   int x, y;
   for (int i = 0; i < pref.length(); i++) {
-    if (priority(pref[i] == 5)) {
+    if (pr(pref[i] == 5)) {
       stack2.push(pref[i]);
-    } else if (priority(pref[i]) < 4) {
+    } else if (pr(pref[i]) < 4) {
       y = stack2.get();
       stack2.pop();
       x = stack2.get();
