@@ -44,15 +44,15 @@ std::string infx2pstfx(std::string inf) {
           sta.push(inf[i]);
         } else if (pr(inf[i]) == 1) {
           while (pr(sta.get()) != 0) { //до открытой скобки
-            out.push_back(sta.get());
-            out.push_back(' ');
+            res.push_back(sta.get());
+            res.push_back(' ');
             sta.pop(); //удаление скобки
           }
           sta.pop();
         } else {
             while (!sta.isEmpty() && (pr(inf[i]) <= pr(sta.get()))) {
-              out.push_back(sta.get());
-              out.push_back(' ');
+              res.push_back(sta.get());
+              res.push_back(' ');
               sta.pop();
             }
             sta.push(inf[i]);
@@ -60,12 +60,12 @@ std::string infx2pstfx(std::string inf) {
      }
   }
   while (!sta.isEmpty()) { //извлечение остатка
-    out.push_back(sta.get());
-    out.push_back(' ');
+    res.push_back(sta.get());
+    res.push_back(' ');
     sta.pop();
   }
-  out.pop_back();
-  return out;
+  res.pop_back();
+  return res;
 }
 
 int eval(std::string pref) {
