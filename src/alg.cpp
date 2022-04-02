@@ -33,7 +33,7 @@ std::string infx2pstfx(std::string inf) {
         } else if (sta.isEmpty()) {
           sta.push(inf[i]);
         } else if (pr(inf[i]) == 1) {
-          while (pr(sta1.get()) != 0) { //до открытой скобки
+          while (pr(sta.get()) != 0) { //до открытой скобки
             res.push_back(sta.get());
             res.push_back(' ');
             sta.pop(); //удаление скобки
