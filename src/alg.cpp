@@ -16,23 +16,23 @@ int pr(char op) {
     }
   }
 
-int culcul(char op, int x, int y) {
+int culcul(char op, int a, int b) {
   switch (op) {
-    case '+': return x + y;
-    case '-': return x - y;
-    case '*': return x * y;
-    case '/': return x / y;
+    case '+': return b + a;
+    case '-': return b - a;
+    case '*': return b * a;
+    case '/': return b / a;
     default: return 0;
   }
 }
 
 std::string infx2pstfx(std::string inf) {
-  std::string out;
+  std::string res;
   TStack <char, 100> sta;
   for (int i = 0; i < inf.length(); i++) {
     if (pr(inf[i]) == 5) {
-      out.push_back(inf[i]); //цифры сразу в строку с пробелом
-      out.push_back(' ');
+      res.push_back(inf[i]); //цифры сразу в строку с пробелом
+      res.push_back(' ');
     } else {
         if (pr(inf[i]) == 4) {
           continue; //пропускаем пробел
@@ -74,7 +74,7 @@ int eval(std::string pref) {
   for (int i = 0; i < pref.length(); i++) {
     if (pr(pref[i]) == 5) {
       stack2.push(pref[i]-'0');
-    } else if (pr(pref[i]) < 5) {
+    } else if (pr(pref[i]) < 4) {
       y = stack2.get();
       stack2.pop();
       x = stack2.get();
