@@ -56,7 +56,7 @@ std::string infx2pstfx(std::string inf) {
   }
   res.pop_back();
   return res;
-}      
+}
 int culcul(char op, int x, int y) {
   switch (op) {
     case '+': return x + y;
@@ -73,7 +73,7 @@ int eval(std::string pref) {
   int x, y;
   for (int i = 0; i < pref.length(); i++) {
     if (pr(pref[i] == 5)) {
-      stack2.push(pref[i]);
+      stack2.push(pref[i]-'0');
     } else if (pr(pref[i]) < 5) {
       y = stack2.get();
       stack2.pop();
