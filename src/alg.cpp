@@ -56,7 +56,7 @@ std::string infx2pstfx(std::string inf) {
   }
   res.pop_back();
   return res;
-}                
+}      
 int culcul(char op, int x, int y) {
   switch (op) {
     case '+': return x + y;
