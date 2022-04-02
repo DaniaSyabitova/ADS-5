@@ -31,7 +31,7 @@ class TStack {
       }
       void pop() {
         if (!isEmpty()) {
-          return arr[top];
+          --top;
         } else {
           throw "It is empty!!!";
           }
