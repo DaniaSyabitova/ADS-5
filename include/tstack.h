@@ -17,7 +17,7 @@ class TStack {
      return top == -1;
      }
    void push(T value) {
-     if(!isFull()) {
+     if (!isFull()) {
        arr[++top] = value;
      } else {
        throw "Already full!!!";
