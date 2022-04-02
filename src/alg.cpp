@@ -18,10 +18,10 @@ int pr(char op) {
 
 int culcul(char op, int a, int b) {
   switch (op) {
-    case '+': return b + a;
-    case '-': return b - a;
-    case '*': return b * a;
-    case '/': return b / a;
+    case '+': return a + b;
+    case '-': return a - b;
+    case '*': return a * b;
+    case '/': return a / b;
     default: return 0;
   }
 }
