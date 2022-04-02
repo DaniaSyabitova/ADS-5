@@ -3,7 +3,7 @@
 #include <map>
 #include "tstack.h"
 
-int priority (char op) {
+int priority(char op) {
     switch (op) {
       case '(': return 0;
       case ')': return 1;
@@ -28,7 +28,7 @@ std::string infx2pstfx(std::string inf) {
           continue; //пропускаем пробел
         } else if (priority(inf[i] == 0)) {
           stack1.push(inf[i]);
-        } else if (priority(inf[i] > priority(stack1.get())) {
+        } else if (priority(inf[i]) > priority(stack1.get())) {
           stack1.push(inf[i]);
         } else if (stack1.isEmpty()) {
           stack1.push(inf[i]);
@@ -40,15 +40,15 @@ std::string infx2pstfx(std::string inf) {
           }
           stack1.pop();
         } else {
-            while ((!stack1.isEmpty()) && (priority(inf[i]) <= priority(stack1.get()))) {
+            while (!stack1.isEmpty() && (priority(inf[i]) <= priority(stack1.get()))) {
               res.push_back(stack1.get());
               res.push_back(' ');
               stack1.pop();
             }
             stack1.push(inf[i]);
         }
-      }
-    }
+     }
+  }
   while (!stack1.isEmpty()) { //извлечение остатка
     res.push_back(stack1.get());
     res.push_back(' ');
@@ -58,7 +58,7 @@ std::string infx2pstfx(std::string inf) {
   return res;
 }
                  
-int culcul (char op, int x, int y) {
+int culcul(char op, int x, int y) {
   switch (op) {
     case '+': return x + y;
     case '-': return x - y;
@@ -80,7 +80,7 @@ int eval(std::string pref) {
       stack2.pop();
       x = stack2.get();
       stack2.pop();
-      stack2.push(culcul(pref[i], x, y)); //помещаем результат предыдущего действия
+      stack2.push(culcul(pref[i], x, y)); //результат предыдущего действия
     }
   }
   res = stack2.get();
