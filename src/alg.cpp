@@ -74,7 +74,7 @@ int eval(std::string pref) {
   for (int i = 0; i < pref.length(); i++) {
     if (pr(pref[i] == 5)) {
       stack2.push(pref[i]);
-    } else if (pr(pref[i]) < 4) {
+    } else if (pr(pref[i]) < 5) {
       y = stack2.get();
       stack2.pop();
       x = stack2.get();
